@@ -1,0 +1,4 @@
+Token after cleaning: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5M2YxNmY4OTg0MjcwMDAxYmUxZmI2YiIsImlhdCI6MTc2NTc0MjMyOCwiZXhwIjoxNzY1NzQzNTI4fQ.JF1M29mX7tLEJQgHKxyhXuQ1n3ThQLL16AmVwpHne9I
+Creating order with headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5M2YxNmY4OTg0MjcwMDAxYmUxZmI2YiIsImlhdCI6MTc2NTc0MjMyOCwiZXhwIjoxNzY1NzQzNTI4fQ.JF1M29mX7tLEJQgHKxyhXuQ1n3ThQLL16AmVwpHne9I'}
+Response without ingredients: 400
+Response body: {"success":false,"message":"Ingredient ids must be provided"}

@@ -1,0 +1,15 @@
+Token after cleaning: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5M2YxNmY5OTg0MjcwMDAxYmUxZmI2ZSIsImlhdCI6MTc2NTc0MjMyOSwiZXhwIjoxNzY1NzQzNTI5fQ.NWByWQnsrEi5jtpCBt4c2Wyhz4aTaQCrrldXa8Wndls
+Creating order with headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5M2YxNmY5OTg0MjcwMDAxYmUxZmI2ZSIsImlhdCI6MTc2NTc0MjMyOSwiZXhwIjoxNzY1NzQzNTI5fQ.NWByWQnsrEi5jtpCBt4c2Wyhz4aTaQCrrldXa8Wndls'}
+Response with invalid ingredients: 500
+Response body: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Internal Server Error</pre>
+</body>
+</html>
+
+Server returned HTML instead of JSON
