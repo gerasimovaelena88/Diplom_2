@@ -1,5 +1,6 @@
 import allure
 import requests
+import logging
 from .endpoints import REGISTER, LOGIN, USER, ORDERS, INGREDIENTS
 
 
@@ -48,7 +49,6 @@ class ApiClient:
             self.token = response.json().get('accessToken')
             # Очищаем токен от префикса 'Bearer ' при сохранении
             self.token = self._clean_token(self.token)
-            print(f"Token after cleaning: {self.token}")
         
         return response
     
@@ -58,7 +58,6 @@ class ApiClient:
         payload = {"ingredients": ingredients}
         headers = self._get_headers(auth)
         
-        print(f"Creating order with headers: {headers}")
         return requests.post(ORDERS, json=payload, headers=headers)
     
     @allure.step("Получение списка доступных ингредиентов")

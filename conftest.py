@@ -1,9 +1,8 @@
 import pytest
 import allure
-import random
-import string
 import requests
 from api.api_client import ApiClient
+from helpers import generate_random_user_data
 
 
 @pytest.fixture
@@ -13,42 +12,32 @@ def api_client():
     return ApiClient()
 
 @pytest.fixture
-def random_user_data():
-    """Генерирует случайные данные пользователя для тестов"""
-    random_string = ''.join(random.choices(string.ascii_lowercase + string.digits, k=10))
-    email = f"test_user_{random_string}@example.com"
-    password = "TestPassword123"
-    name = f"Test User {random_string}"
-    
-    return {
-        "email": email,
-        "password": password,
-        "name": name
-    }
-
-@pytest.fixture
-def registered_user(api_client, random_user_data):
+def registered_user(api_client):
     """Фикстура для создания и удаления тестового пользователя"""
+
+    # Генерируем данные напрямую через функцию
+    user_data = generate_random_user_data()
+
     # Регистрация пользователя
     response = api_client.create_user(
-        random_user_data["email"],
-        random_user_data["password"],
-        random_user_data["name"]
+        user_data["email"],
+        user_data["password"],
+        user_data["name"]
     )
     
     assert response.status_code == 200, f"Failed to register user: {response.text}"
     
-    user_data = response.json()
-    token = user_data.get('accessToken')
+    response_data = response.json()
+    token = response_data.get('accessToken')
     
     # Очищаем токен от 'Bearer ' если он есть
     if token and token.startswith('Bearer '):
         token = token[7:]
     
     yield {
-        "email": random_user_data["email"],
-        "password": random_user_data["password"],
-        "name": random_user_data["name"],
+        "email": user_data["email"],
+        "password": user_data["password"],
+        "name": user_data["name"],
         "token": token
     }
     

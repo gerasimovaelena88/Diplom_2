@@ -1,5 +1,6 @@
 import pytest
 import allure
+from helpers import generate_random_user_data
 
 
 @allure.feature("Регистрация пользователя")
@@ -8,17 +9,19 @@ class TestCreateUser:
     
     @allure.title("Успешное создание уникального пользователя")
     @allure.description("Тест проверяет успешное создание нового уникального пользователя")
-    def test_create_unique_user_success(self, api_client, random_user_data):
+    def test_create_unique_user_success(self, api_client):
+        with allure.step("Генерация данных пользователя"):
+            user_data = generate_random_user_data()
+
         with allure.step("Создание нового пользователя"):
             response = api_client.create_user(
-                random_user_data["email"],
-                random_user_data["password"],
-                random_user_data["name"]
+                user_data["email"],
+                user_data["password"],
+                user_data["name"]
             )
 
         with allure.step("Проверка ответа"):    
             assert response.status_code == 200
-            
             data = response.json()
             assert data["success"] is True
             assert "accessToken" in data
@@ -37,7 +40,6 @@ class TestCreateUser:
                 registered_user["name"]
             )
             
-        
         with allure.step("Проверка ответа"):    
             assert response.status_code == 403
             data = response.json()
@@ -46,12 +48,15 @@ class TestCreateUser:
     
     @allure.title("Создание пользователя без email")
     @allure.description("Тест проверяет создание пользователя без указания email")
-    def test_create_user_without_email(self, api_client, random_user_data):
+    def test_create_user_without_email(self, api_client):
+        with allure.step("Генерация данных пользователя"):
+            user_data = generate_random_user_data()
+
         with allure.step("Создание пользователя без email"):
             response = api_client.create_user(
                 "",
-                random_user_data["password"],
-                random_user_data["name"]
+                user_data["password"],
+                user_data["name"]
             )
 
         with allure.step("Проверка ответа"):    
@@ -60,12 +65,15 @@ class TestCreateUser:
     
     @allure.title("Создание пользователя без пароля")
     @allure.description("Тест проверяет создание пользователя без указания пароля")
-    def test_create_user_without_password(self, api_client, random_user_data):
+    def test_create_user_without_password(self, api_client):
+        with allure.step("Генерация данных пользователя"):
+            user_data = generate_random_user_data()
+
         with allure.step("Создание пользователя без пароля"):
             response = api_client.create_user(
-                random_user_data["email"],
+                user_data["email"],
                 "",
-                random_user_data["name"]
+                user_data["name"]
             )
 
         with allure.step("Проверка ответа"):    
@@ -74,11 +82,14 @@ class TestCreateUser:
     
     @allure.title("Создание пользователя без имени")
     @allure.description("Тест проверяет создание пользователя без указания имени")
-    def test_create_user_without_name(self, api_client, random_user_data):
+    def test_create_user_without_name(self, api_client):
+        with allure.step("Генерация данных пользователя"):
+            user_data = generate_random_user_data()
+
         with allure.step("Создание пользователя без имени"):
             response = api_client.create_user(
-                random_user_data["email"],
-                random_user_data["password"],
+                user_data["email"],
+                user_data["password"],
                 ""
             )
 

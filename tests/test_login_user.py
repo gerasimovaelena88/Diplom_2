@@ -14,6 +14,7 @@ class TestLoginUser:
                 registered_user["email"],
                 registered_user["password"]
             )
+            
         with allure.step("Проверка ответа"):    
             assert response.status_code == 200
             data = response.json()

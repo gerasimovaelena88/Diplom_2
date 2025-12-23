@@ -1,3 +1,0 @@
-Creating order with headers: {'Content-Type': 'application/json'}
-Response status without auth: 200
-Response body without auth: {"success":true,"name":"Флюоресцентный бургер","order":{"number":7519}}
